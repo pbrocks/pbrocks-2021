@@ -1,0 +1,52 @@
+/**
+ * Theme Name: PBrocks 2021 Blog
+ * Theme URI: https://github.com/seedbed/seedbed-2021-blog
+ * Description: button #209695, links #209695,
+ * 4-column header text 45px tenon bold #1C9C6D
+ * Template: twentytwentyone
+ * Author: Provisions Group
+ * Version: 1.5.0
+ */
+
+:root{
+    --global--sans-font-child: "tenon";
+    --global--serif-font-child: "freight-display-pro";
+    --heading--font-family: "tenon";
+    --entry-content--font-family: "tenon";
+    --global--font-secondary-child: var(--font-headings, Times, -apple-system, Garamond, "freight-display-pro", serif);
+    --global--font-family-child: var(--global--font-secondary-child);
+    --global--button-color-primary: #209695;
+    --global--link-color-primary: #209695;
+    --global--dark-button-color: #ffffff;
+    --global--submenu-background-color: #ffffff;
+    --form--border-width: 1px;
+    --form--color-text: #a3a3a3;
+    --form--child-border-color: #d3d3d3;
+    --heading--font-size-h1: 40px;
+	--global--font-size-page-title: 40px;
+}
+
+@media only screen and (min-width: 482px) {
+	.site-header {
+		padding-top: calc(var(--global--spacing-vertical) / 0.75);
+		padding-bottom: calc(3 * var(--global--spacing-vertical));
+	}
+	.site-title {
+		font-size: 1.3rem;
+	}
+	.primary-navigation > div > .menu-wrapper > li > .sub-menu li {
+		background: var(--header--color-background,var(--global--color-background));
+		background: var(--global--submenu-background-color);
+	}
+}
+
+@media only screen and (min-width: 822px) {
+	.site-header {
+		padding-top: calc(2.4 * var(--global--spacing-vertical));
+	}
+	div.wp-block-cover.alignfull.is-style-default.no-padding-bottom > div > div.wp-block-uagb-advanced-heading.uagb-block-585f2c09,
+	.wp-block-cover__inner-container > .wp-block-uagb-advanced-heading {
+	    max-width: unset!important;
+	}
+
+}
