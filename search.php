@@ -9,64 +9,55 @@
  * @since Twenty Twenty-One 1.0
  */
 
-// Exit if accessed directly.
-defined( 'ABSPATH' ) || exit;
-
 get_header();
 
-$blog_id = get_current_blog_id();
-
-$main_blog_id = get_main_site_id();
-
-$args = array(
-	's'              => esc_html( get_search_query() ),
-	'posts_per_page' => 10,
-);
-
-if ( ! empty( $_GET['blogs'] ) ) {
-	$args['blog_id'] = $_GET['blogs'];
-}
-
-$networkposts = network_query_posts( $args );
-
-if ( count( $networkposts ) > 0 || have_posts() ) {
-	$result_count = count( $networkposts );
+if ( have_posts() ) {
 	?>
 	<header class="page-header alignwide">
 		<h1 class="page-title">
-			Search Results for : <?php echo esc_html( get_search_query() ); ?>
+			<?php
+			printf(
+				/* translators: %s: Search term. */
+				esc_html__( 'Results for "%s"', 'pbrocks-info' ),
+				'<span class="page-description search-term">' . esc_html( get_search_query() ) . '</span>'
+			);
+			?>
 		</h1>
-	</header>
+	</header><!-- .page-header -->
 
-	<?php
-	foreach ( $networkposts as $networkpost ) {
-		?>
-		<article id="post-<?php echo $networkpost->ID; ?>">
-			<header class="entry-header">
-				<h2 class="entry-title default-max-width"><a href="<?php echo $networkpost->guid; ?>"><?php echo $networkpost->post_title; ?></a></h2>
-
-				<!-- <figure class="post-thumbnail">
-					<a class="post-thumbnail-inner alignwide" href="<?php // the_permalink(); ?>">
-						<?php // the_post_thumbnail( 'post-thumbnail' ); ?>
-					</a>
-				</figure> -->
-			</header>
-
-			<div class="entry-content">
-				<p><?php echo $networkpost->post_excerpt; ?></p>
-			</div>
-
-			<footer class="entry-footer default-max-width">
-				<div class="post-taxonomies">
-					<span class="cat-links">Written by <?php echo ucfirst( get_the_author_meta( 'display_name', $networkpost->post_author ) ); ?></span>
-				</div>  
-				<span class="posted-on">Published on 
-					<time class="entry-date published updated"><?php echo date( 'F j, Y', strtotime( $networkpost->post_date ) ); ?></time>
-				</span>
-			</footer>
-		</article>
+	<div class="search-result-count default-max-width">
 		<?php
-	}
+		printf(
+			esc_html(
+				/* translators: %d: The number of search results. */
+				_n(
+					'We found %d result for your search.',
+					'We found %d results for your search.',
+					(int) $wp_query->found_posts,
+					'pbrocks-info'
+				)
+			),
+			(int) $wp_query->found_posts
+		);
+		?>
+	</div><!-- .search-result-count -->
+	<?php
+	// Start the Loop.
+	while ( have_posts() ) {
+		the_post();
+
+		/*
+		 * Include the Post-Format-specific template for the content.
+		 * If you want to override this in a child theme, then include a file
+		 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+		 */
+		get_template_part( 'template-parts/content/content-excerpt', get_post_format() );
+	} // End the loop.
+
+	// Previous/next page navigation.
+	twenty_twenty_one_the_posts_navigation();
+
+	// If no content, include the "No posts found" template.
 } else {
 	get_template_part( 'template-parts/content/content-none' );
 }

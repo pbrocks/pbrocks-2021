@@ -34,18 +34,6 @@ function enqueue_seedbed_2021_blog_style() {
 		array( 'parent-style' ),
 		time()
 	);
-	wp_enqueue_style(
-		'typekit-brian',
-		'https://use.typekit.net/avo5rqo.css',
-		array(),
-		'1.1'
-	);
-	wp_enqueue_style(
-		'blog-theme',
-		get_stylesheet_directory_uri() . '/css/blog-theme.css',
-		array( 'child-style' ),
-		time()
-	);
 }
 
 
@@ -105,18 +93,18 @@ function seedbed_2021_load_php() {
 		}
 	}
 }
-add_action( 'after_setup_theme', 'create_seedbed_2021_local_right_menu' );
+add_action( 'after_setup_theme', 'create_pbrocks_info_right_menu' );
 /**
- * [create_seedbed_2021_local_right_menu]
+ * [create_pbrocks_info_right_menu]
  *
  * @return [type] [description]
  */
-function create_seedbed_2021_local_right_menu() {
-	add_theme_support( 'yoast-seo-breadcrumbs' );
+function create_pbrocks_info_right_menu() {
+	 add_theme_support( 'yoast-seo-breadcrumbs' );
 
 	register_nav_menus(
 		array(
-			'local' => esc_html__( 'Local Right', 'seedbed-2021-theme' ),
+			'local' => esc_html__( 'Local Right', 'pbrocks-info' ),
 		)
 	);
 	if ( ! get_theme_mod( 'background_color', false ) ) {

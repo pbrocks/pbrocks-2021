@@ -13,12 +13,12 @@ get_header();
 ?>
 
 	<header class="page-header alignwide">
-		<h1 class="page-title"><?php esc_html_e( 'Sorry, nothing was found', 'twentytwentyone' ); ?></h1>
+		<h1 class="page-title"><?php esc_html_e( 'Sorry, nothing was found', 'pbrocks-info' ); ?></h1>
 	</header><!-- .page-header -->
 
 	<div class="error-404 not-found default-max-width">
 		<div class="page-content">
-			<p><?php esc_html_e( 'Unfortunately, It looks like nothing was found at this location. Maybe try a search?', 'twentytwentyone' ); ?></p>
+			<p><?php esc_html_e( 'Unfortunately, It looks like nothing was found at this location. Maybe try a search?', 'pbrocks-info' ); ?></p>
 			<?php get_search_form(); ?>
 		</div><!-- .page-content -->
 	</div><!-- .error-404 -->

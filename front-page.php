@@ -14,6 +14,11 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
+$current_user = wp_get_current_user();
+if ( 'pbrocks' === $current_user->user_login ) {
+	echo '<h3 style="color:salmon;">__FILE__: ' . __FILE__ . '</h3>';
+}
+
 /* Start the Loop */
 while ( have_posts() ) :
 	the_post();
